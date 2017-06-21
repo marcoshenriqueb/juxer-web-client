@@ -1,6 +1,7 @@
 import Router from '@/router';
 import eventService from '@/services/event';
 import socketService from '@/services/socket';
+import queueService from '@/services/queue';
 import {
   SET_SEARCH_CODE_ERROR,
   SET_EVENT,
@@ -66,5 +67,18 @@ export default {
    */
   closeEventConnection({ commit }, id) {
     socketService.closeEventConnection(id);
+  },
+
+  /**
+   * Adds track to the queue.
+   *
+   * @param {Object} store
+   * @param {Integer} options.id The event id.
+   * @param {Object} options.track The track to be added.
+   */
+  addToQueue(store, { id, track }) {
+    queueService.store(id, track)
+    .then(r => console.log(r))
+    .catch(r => console.log(r));
   },
 };

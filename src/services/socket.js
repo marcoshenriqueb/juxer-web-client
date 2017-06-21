@@ -30,7 +30,7 @@ export default {
     });
 
     socket.on(`juxer:queueindex:${id}`, (data) => {
-      store.commit(SET_EVENT_QUEUE_INDEX, data);
+      store.commit(SET_EVENT_QUEUE_INDEX, data !== null ? data : 0);
     });
 
     socket.on(`juxer:tracks:${id}`, (data) => {
