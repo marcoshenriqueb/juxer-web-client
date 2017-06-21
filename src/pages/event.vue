@@ -18,14 +18,18 @@
       <h3 v-for="(p, k) in tracks" @click="() => { playlist = k; }">{{ k }}</h3>
       <div v-if="playlist">
         <h4>Choose a track:</h4>
-        <span @click="addToQueue(t)" v-for="t in tracks[playlist]">{{ t.title }}<br></span>
+        <span @click="addToQueue(t)" v-for="t in getNotInQueue(tracks[playlist])">{{ t.title }}<br></span>
       </div>
     </div>
+    <button @click="leaveEvent">Sair</button>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import {
+  RESET_EVENT,
+} from '@/store/mutation-types';
 
 export default {
   data() {
@@ -49,6 +53,12 @@ export default {
         this.$store.dispatch('openEventConnection', event.id);
       }
     },
+
+    tracks(tracks) {
+      if (Object.keys(tracks).indexOf(this.playlist) < 0) {
+        this.playlist = '';
+      }
+    },
   },
 
   mounted() {
@@ -59,8 +69,10 @@ export default {
     }
   },
 
-  beforeRouteLeave() {
+  beforeRouteLeave(to, from, next) {
     this.$store.dispatch('closeEventConnection', this.event.id);
+    this.$store.commit(RESET_EVENT);
+    next();
   },
 
   methods: {
@@ -73,6 +85,28 @@ export default {
       this.$store.dispatch('addToQueue', {
         id: this.event.id,
         track,
+      });
+    },
+
+    /**
+     * Gets list of tracks that are not in queue already.
+     *
+     * @param  {Array} tracks The track list.
+     * @return {Array} The filtered list.
+     */
+    getNotInQueue(tracks) {
+      return tracks.filter(t => (
+        this.queue.filter(q => q.id.toString() === t.id.toString()).length === 0
+      ));
+    },
+
+    /**
+     * Leaves event.
+     */
+    leaveEvent() {
+      console.log(1);
+      this.$router.push({
+        name: 'start',
       });
     },
   },

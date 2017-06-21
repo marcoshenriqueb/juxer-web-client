@@ -5,6 +5,7 @@ import {
   SET_EVENT_TRACKS,
   SET_EVENT_QUEUE,
   SET_EVENT_QUEUE_INDEX,
+  RESET_EVENT,
 } from '@/store/mutation-types';
 
 export default {
@@ -30,5 +31,12 @@ export default {
 
   [SET_EVENT_QUEUE_INDEX](state, index) {
     state.index = index;
+  },
+
+  [RESET_EVENT](state) {
+    state.event = {};
+    state.tracks = {};
+    state.queue = [];
+    state.index = 0;
   },
 };

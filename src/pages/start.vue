@@ -36,6 +36,7 @@ export default {
             code: event.code,
           },
         });
+        this.$store.commit(SET_SEARCH_CODE, '');
       }
     },
   },
