@@ -1,5 +1,6 @@
 import Router from '@/router';
 import eventService from '@/services/event';
+import socketService from '@/services/socket';
 import {
   SET_SEARCH_CODE_ERROR,
   SET_EVENT,
@@ -48,5 +49,22 @@ export default {
         name: 'start',
       });
     });
+  },
+
+  /**
+   * Opens a event connection with socket.io server.
+   *
+   * @param  {Function} options.commit
+   * @param  {Integer} id The event id.
+   */
+  openEventConnection({ commit }, id) {
+    socketService.openEventConnection(id);
+  },
+
+  /**
+   * Close event connection and remove listeners.
+   */
+  closeEventConnection() {
+    socketService.closeEventConnection();
   },
 };

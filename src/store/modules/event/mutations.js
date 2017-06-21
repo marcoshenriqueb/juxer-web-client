@@ -2,6 +2,7 @@ import {
   SET_EVENT,
   SET_SEARCH_CODE,
   SET_SEARCH_CODE_ERROR,
+  SET_EVENT_TRACKS,
 } from '@/store/mutation-types';
 
 export default {
@@ -15,5 +16,9 @@ export default {
 
   [SET_SEARCH_CODE_ERROR](state, error) {
     state.searchCodeError = error;
+  },
+
+  [SET_EVENT_TRACKS](state, tracks) {
+    state.tracks = tracks;
   },
 };

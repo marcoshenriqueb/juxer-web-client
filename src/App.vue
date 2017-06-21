@@ -7,6 +7,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import '@/services/socket';
 
 export default {
   name: 'app',
