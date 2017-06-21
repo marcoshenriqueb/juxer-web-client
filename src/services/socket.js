@@ -34,7 +34,7 @@ export default {
     });
 
     socket.on(`juxer:tracks:${id}`, (data) => {
-      store.commit(SET_EVENT_TRACKS, JSON.parse(data));
+      store.commit(SET_EVENT_TRACKS, data);
     });
   },
 
