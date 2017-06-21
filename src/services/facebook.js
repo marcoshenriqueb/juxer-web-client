@@ -47,7 +47,7 @@ export default {
    */
   fetchUser() {
     return new Promise((resolve) => {
-      window.FB.api('/me', { fields: 'first_name,last_name,picture,email' }, (response) => {
+      window.FB.api('/me', { fields: 'first_name,last_name,picture.type(large),email' }, (response) => {
         resolve(response);
       });
     });
