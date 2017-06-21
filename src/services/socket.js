@@ -3,6 +3,8 @@ import Router from '@/router';
 import store from '@/store';
 import {
   SET_EVENT_TRACKS,
+  SET_EVENT_QUEUE,
+  SET_EVENT_QUEUE_INDEX,
 } from '@/store/mutation-types';
 
 const socketUrl = process.env.SOCKET_LOCATION;
@@ -23,22 +25,26 @@ export default {
   openEventConnection(id) {
     socket.emit('jukebox-client-connect', id);
 
-    socket.on('juxer:queue:push', (data) => {
-      console.log(data);
-      // store.dispatch('addSong', JSON.parse(data).track);
+    socket.on(`juxer:queue:${id}`, (data) => {
+      store.commit(SET_EVENT_QUEUE, data.map(d => JSON.parse(d)));
+    });
+
+    socket.on(`juxer:queueindex:${id}`, (data) => {
+      store.commit(SET_EVENT_QUEUE_INDEX, data);
     });
 
     socket.on(`juxer:tracks:${id}`, (data) => {
       store.commit(SET_EVENT_TRACKS, JSON.parse(data));
-      // store.dispatch('addSong', JSON.parse(data).track);
     });
   },
 
   /**
    * Close the connection and removes event listeners.
    */
-  closeEventConnection() {
+  closeEventConnection(id) {
     socket.emit('jukebox-client-disconnect');
-    socket.removeAllListeners('juxer:queue:push');
+    socket.removeAllListeners(`juxer:tracks:${id}`);
+    socket.removeAllListeners(`juxer:queueindex:${id}`);
+    socket.removeAllListeners(`juxer:queue:${id}`);
   },
 };

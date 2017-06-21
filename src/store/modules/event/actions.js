@@ -64,7 +64,7 @@ export default {
   /**
    * Close event connection and remove listeners.
    */
-  closeEventConnection() {
-    socketService.closeEventConnection();
+  closeEventConnection({ commit }, id) {
+    socketService.closeEventConnection(id);
   },
 };

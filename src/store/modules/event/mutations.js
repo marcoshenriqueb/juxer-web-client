@@ -3,6 +3,8 @@ import {
   SET_SEARCH_CODE,
   SET_SEARCH_CODE_ERROR,
   SET_EVENT_TRACKS,
+  SET_EVENT_QUEUE,
+  SET_EVENT_QUEUE_INDEX,
 } from '@/store/mutation-types';
 
 export default {
@@ -20,5 +22,13 @@ export default {
 
   [SET_EVENT_TRACKS](state, tracks) {
     state.tracks = tracks;
+  },
+
+  [SET_EVENT_QUEUE](state, queue) {
+    state.queue = queue;
+  },
+
+  [SET_EVENT_QUEUE_INDEX](state, index) {
+    state.index = index;
   },
 };

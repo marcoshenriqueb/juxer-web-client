@@ -31,8 +31,8 @@ export default {
     }
   },
 
-  destroyed() {
-    this.$store.dispatch('closeEventConnection');
+  beforeRouteLeave() {
+    this.$store.dispatch('closeEventConnection', this.event.id);
   },
 };
 </script>
