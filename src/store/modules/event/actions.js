@@ -78,7 +78,6 @@ export default {
    */
   addToQueue(store, { id, track }) {
     queueService.store(id, track)
-    .then(r => console.log(r))
     .catch(r => console.log(r));
   },
 };
