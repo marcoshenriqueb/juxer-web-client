@@ -5,11 +5,15 @@ import Axios from 'axios';
 import App from './App';
 import router from './router';
 import store from './store';
+import routeMidlleware from './router/middleware';
 
 Vue.config.productionTip = false;
 
 // Syncs Vue router and Vuex.
 VuexRouterSync.sync(store, router);
+
+// Adds router middleware to check authentication mostly.
+router.beforeEach(routeMidlleware.beforeEach);
 
 // Sets Axios base url for the API and default header.
 Axios.defaults.baseURL = process.env.API_LOCATION;
