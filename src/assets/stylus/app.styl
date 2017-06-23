@@ -129,6 +129,12 @@ ul
 .light-text
     color lighttextcolot
 
+.ellipsis
+    max-width 100%
+    display inline-block
+    white-space nowrap
+    overflow hidden !important
+    text-overflow ellipsis
 
 @import './loader';
 @import './button';
@@ -191,7 +197,7 @@ userpicsize = 100px
 .add-track-button
     position absolute
     z-index 1000
-    top 'calc(%s - 25px)' % currenttrackheight
+    top 'calc(%s - 22.5px)' % currenttrackheight
 
 .event-queue_container
     height 'calc(100vh - %s)' % currenttrackheight
@@ -206,3 +212,31 @@ userpicsize = 100px
     height 40px
     margin-right 10px
     
+.event-add_track_container
+    overflow-y auto
+    padding-top 40px
+    position absolute
+    height 'calc(100vh - %s)' % currenttrackheight
+    top currenttrackheight
+    z-index 100
+    background-color lightbgcolor
+    transform translate(100%)
+    transition transform 300ms ease
+    &.active
+        transform translate(0%)
+        
+.event-add_track_container-playlist
+    border-bottom 1px lighttextcolot solid
+        
+.event-add_track_container-playlist-title
+    padding 1rem .4rem
+    width 100%
+    margin 0 !important
+
+.event-add_track_container-playlist-track
+    padding 0 .4rem
+    margin-bottom 10px
+
+.shrink-transition
+    overflow hidden
+    transition height 300ms ease

@@ -1,5 +1,5 @@
 <template>
-  <div class="full-w flex-column" style="position:relative;">
+  <div class="full-w flex-column" style="position:relative;overflow-x:hidden;">
     <div class="event-current_track flex-column full-w">
       <a class="event-current_track-leave_button flex justify-center" @click="leaveEvent"><span class="fa fa-chevron-left"></span></a>
       <img class="event-current_track-img" v-if="queue.length" :src="queue[index].album.cover_big" :alt="queue[index].album.title">
@@ -11,7 +11,8 @@
         <span class="text">Pedido por {{ queue[index].user.first_name }}</span>
       </div>
     </div>
-    <button class="icon-button big add-track-button"><span class="fa fa-plus"></span></button>
+    <button class="icon-button big add-track-button" @click="toggleAddTrack" v-if="!addTrack"><span class="fa fa-plus"></span></button>
+    <button class="icon-button big add-track-button" @click="toggleAddTrack" v-else><span class="fa fa-close"></span></button>
     <div class="full-w flex-column pad event-queue_container">
       <div class="event-queue_item full-w flex start" v-for="(q, k) in queue" v-if="k > index">
         <img class="event-queue_item-img" :src="q.album.cover_medium" :alt="q.album.title"><br>
@@ -21,11 +22,27 @@
         </div>
       </div>
     </div>
-    <div>
-      <h3 v-for="(p, k) in tracks" @click="() => { playlist = k; }">{{ k }}</h3>
-      <div v-if="playlist">
-        <h4>Choose a track:</h4>
-        <span @click="addToQueue(t)" v-for="t in getNotInQueue(tracks[playlist])">{{ t.title }}<br></span>
+    <div class="event-add_track_container full-w pad" :class="{ 'active': addTrack }">
+      <p class="text big">Escolha uma playlist:</p>
+      <div class="event-add_track_container-playlist" v-for="(p, k) in tracks" @click="openPlaylist(k)">
+        <p class="label big event-add_track_container-playlist-title">{{ k }}</p>
+        <transition 
+          name="shrink"
+          @before-leave="calculateElementHeight"
+          @after-enter="calculateElementHeight"
+          @before-enter="(el) => { el.style.height = '0px'; }"
+          @leave="(el) => { el.style.height = '0px'; }"
+        >
+          <div v-if="playlist === k" class="full-w flex-column start shrink-transition">
+            <div class="event-add_track_container-playlist-track full-w flex start" @click="addToQueue(t)" v-for="t in getNotInQueue(tracks[playlist])">
+              <img class="event-queue_item-img" :src="t.album.cover_medium" :alt="t.album.title"><br>
+              <div class="flex-column start">
+                <span class="text big ellipsis">{{ t.title }}</span>
+                <span class="text small ellipsis">{{ t.artist.name }}</span>
+              </div>
+            </div>
+          </div>
+        </transition> 
       </div>
     </div>
   </div>
@@ -40,6 +57,7 @@ import {
 export default {
   data() {
     return {
+      addTrack: false,
       playlist: '',
     };
   },
@@ -88,6 +106,7 @@ export default {
      * @param {Object} track The track.
      */
     addToQueue(track) {
+      this.toggleAddTrack();
       this.$store.dispatch('addToQueue', {
         id: this.event.id,
         track,
@@ -127,6 +146,49 @@ export default {
       }
 
       return track.user.picture;
+    },
+
+    /**
+     * Toogle add track container.
+     */
+    toggleAddTrack() {
+      if (!this.addTrack) {
+        this.playlist = '';
+      }
+
+      this.addTrack = !this.addTrack;
+    },
+
+    /**
+     * Open chosen playlist's tracks.
+     *
+     * @param  {String} playlist The playlist name.
+     */
+    openPlaylist(playlist) {
+      if (this.playlist === playlist) {
+        this.playlist = '';
+        return;
+      }
+
+      this.playlist = playlist;
+    },
+
+    /**
+     * Calculates elements height on shrink transitions.
+     *
+     * @param  {Object} el The element.
+     */
+    calculateElementHeight(el, done) {
+      if (el.children.length === 0) {
+        el.style.height = 0;
+        return;
+      }
+
+      const count = el.children.length;
+      el.style.height = `${count * 50}px`;
+      if (typeof done === 'function') {
+        done();
+      }
     },
   },
 };
