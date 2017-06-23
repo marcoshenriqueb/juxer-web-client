@@ -1,6 +1,7 @@
 import {
   SET_EVENT,
   SET_SEARCH_CODE,
+  SET_SEARCHING_EVENT_STATUS,
   SET_SEARCH_CODE_ERROR,
   SET_EVENT_TRACKS,
   SET_EVENT_QUEUE,
@@ -15,6 +16,10 @@ export default {
 
   [SET_SEARCH_CODE](state, code) {
     state.searchCode = code;
+  },
+
+  [SET_SEARCHING_EVENT_STATUS](state, status) {
+    state.searching = status;
   },
 
   [SET_SEARCH_CODE_ERROR](state, error) {

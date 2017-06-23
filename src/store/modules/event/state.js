@@ -1,5 +1,6 @@
 export default {
   searchCode: '',
+  searching: false,
   searchCodeError: '',
   event: {},
   tracks: {},

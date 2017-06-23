@@ -1,0 +1,84 @@
+form_bg_color = #222
+form_light_color = #fff
+
+form
+  width 100%
+
+.field
+  font-size 12px
+  font-weight 300
+  letter-spacing 1px
+  text-transform uppercase
+
+label
+  display block
+  margin-bottom 5px
+
+  &.checkbox
+    display inline
+
+input, textarea
+  display block
+  min-height 50px
+  margin-bottom 19px
+  margin-top 12px
+  border-style none
+  border-radius 3px
+  background-color form_bg_color
+  transition box-shadow 200ms ease
+  color form_light_color
+  width 100%
+  padding 8px 12px
+  font-size 14px
+  border 1px solid form_bg_color
+
+  &:focus
+    box-shadow inset 0 0 0 2px primarycolor
+    outline 0
+
+.checkbox-container
+  display flex
+  align-items center
+
+input[type='checkbox']
+  display inline
+  min-height 15px
+  width 15px
+
+select
+  min-height 40px
+  margin-bottom 19px
+  margin-top 12px
+  border-style none
+  border-radius 3px
+  background-color form_bg_color
+  transition box-shadow 200ms ease
+  color form_light_color
+  min-width 200px
+  padding 8px 12px
+  font-size 14px
+  cursor pointer
+  &.focused
+    box-shadow inset 0 -2px 0 0 primarycolor
+    margin 0
+  &:focus
+    outline 0
+
+.form-error
+  padding: 9px 25px
+  border-radius: 3px
+  color: form_light_color
+  font-weight: 600;
+  font-size 14px
+  text-transform uppercase
+  margin-top 15px
+
+.form-success
+  background-color: primarycolor
+  color: form_light_color
+  padding: 9px 25px
+  font-weight: 600;
+  border-radius: 3px
+  font-size 14px
+  text-transform uppercase
+  margin-top 15px

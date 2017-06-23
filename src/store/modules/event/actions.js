@@ -5,6 +5,7 @@ import queueService from '@/services/queue';
 import {
   SET_SEARCH_CODE_ERROR,
   SET_EVENT,
+  SET_SEARCHING_EVENT_STATUS,
 } from '@/store/mutation-types';
 
 export default {
@@ -15,6 +16,7 @@ export default {
    * @param  {String} code The search code.
    */
   findEvent({ commit }, code) {
+    commit(SET_SEARCHING_EVENT_STATUS, true);
     eventService.getCode(code)
     .then(({ data }) => {
       if (data.count) {
@@ -22,7 +24,9 @@ export default {
       } else {
         commit(SET_SEARCH_CODE_ERROR, 'Esse código não existe.');
       }
+      commit(SET_SEARCHING_EVENT_STATUS, false);
     }).catch(() => {
+      commit(SET_SEARCHING_EVENT_STATUS, false);
       commit(SET_SEARCH_CODE_ERROR, 'Falha na busca, por favor tente mais tarde.');
     });
   },

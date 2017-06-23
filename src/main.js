@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VuexRouterSync from 'vuex-router-sync';
 import Axios from 'axios';
+import Toasted from 'vue-toasted';
 
 import App from './App';
 import router from './router';
@@ -27,6 +28,12 @@ Vue.$http = Axios;
 
 // Register global components.
 Vue.component('j-button', JButton);
+
+// Toaster.
+Vue.use(Toasted, {
+  position: 'top-center',
+  duration: 3000,
+});
 
 /* eslint-disable no-new */
 new Vue({

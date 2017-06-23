@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="start-container full-w flex-column justify-center pad">
+    <img class="start-container_img" src="./../assets/media/logo/juxer-logo-light.png" alt="Juxer logo">
+    <span class="text">O código do evento pode ser obtido com o responsável pela jukebox.</span>
     <input @input="onSearchInput" :value="searchCode" type="text" placeholder="Digite o código">
-    <button @click="enter">Entrar</button>
-    <span v-if="searchCodeError.length">{{ searchCodeError }}</span>
-    <button @click="logout">Sair</button>
+    <j-button text="Entrar" :loading="searchingEvent" @click.native="enter"></j-button>
+    <br>
+    <a class="white" @click="logout">Sair</a>
   </div>
 </template>
 
@@ -20,6 +22,7 @@ export default {
       'event',
       'searchCode',
       'searchCodeError',
+      'searchingEvent',
     ]),
   },
 
@@ -38,6 +41,12 @@ export default {
           },
         });
         this.$store.commit(SET_SEARCH_CODE, '');
+      }
+    },
+
+    searchCodeError(error) {
+      if (error.length) {
+        this.$toasted.show(error);
       }
     },
   },

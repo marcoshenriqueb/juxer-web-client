@@ -5,4 +5,5 @@ export default {
   index: state => state.index,
   searchCode: state => state.searchCode,
   searchCodeError: state => state.searchCodeError,
+  searchingEvent: state => state.searching,
 };
