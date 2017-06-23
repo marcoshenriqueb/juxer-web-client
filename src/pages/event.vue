@@ -68,6 +68,7 @@ export default {
       'tracks',
       'queue',
       'index',
+      'addingToQueueStatus',
     ]),
   },
 
@@ -81,6 +82,12 @@ export default {
     tracks(tracks) {
       if (Object.keys(tracks).indexOf(this.playlist) < 0) {
         this.playlist = '';
+      }
+    },
+
+    addingToQueueStatus(status) {
+      if (status.length) {
+        this.$toasted.show(status);
       }
     },
   },
@@ -152,7 +159,7 @@ export default {
      * Toogle add track container.
      */
     toggleAddTrack() {
-      if (!this.addTrack) {
+      if (this.addTrack) {
         this.playlist = '';
       }
 

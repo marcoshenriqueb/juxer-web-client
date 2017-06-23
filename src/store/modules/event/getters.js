@@ -6,4 +6,5 @@ export default {
   searchCode: state => state.searchCode,
   searchCodeError: state => state.searchCodeError,
   searchingEvent: state => state.searching,
+  addingToQueueStatus: state => state.addingToQueueStatus,
 };

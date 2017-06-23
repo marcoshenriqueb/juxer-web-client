@@ -6,6 +6,7 @@ import {
   SET_SEARCH_CODE_ERROR,
   SET_EVENT,
   SET_SEARCHING_EVENT_STATUS,
+  SET_ADD_TO_QUEUE_STATUS,
 } from '@/store/mutation-types';
 
 export default {
@@ -80,8 +81,18 @@ export default {
    * @param {Integer} options.id The event id.
    * @param {Object} options.track The track to be added.
    */
-  addToQueue(store, { id, track }) {
+  addToQueue({ commit }, { id, track }) {
     queueService.store(id, track)
-    .catch(r => console.log(r));
+    .then(() => {
+      commit(SET_ADD_TO_QUEUE_STATUS, 'O seu pedido entrou na fila!');
+      setTimeout(() => {
+        commit(SET_ADD_TO_QUEUE_STATUS, '');
+      }, 3000);
+    }).catch(() => {
+      commit(SET_ADD_TO_QUEUE_STATUS, 'Houve um erro com o pedido, tente novamente.');
+      setTimeout(() => {
+        commit(SET_ADD_TO_QUEUE_STATUS, '');
+      }, 3000);
+    });
   },
 };

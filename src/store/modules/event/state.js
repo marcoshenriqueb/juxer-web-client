@@ -6,4 +6,5 @@ export default {
   tracks: {},
   queue: {},
   index: 0,
+  addingToQueueStatus: '',
 };
