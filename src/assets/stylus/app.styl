@@ -1,0 +1,128 @@
+primarycolor = #e91e63
+bgcolor = black
+lightbgcolor = #111
+lighttextcolot = #b2b2b2
+color = white
+mobilesidepad = 2rem
+filtercolor = rgba(0, 0, 0, .9)
+
+*
+    box-sizing border-box
+
+body
+    font-family 'Raleway', sans-serif
+    font-weight 400
+    font-size 14px
+    color color
+
+h1, h2, h3, h4, h5, h6
+    font-weight 500
+    
+ul
+    list-style none
+
+*::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+*::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+.initial-loader-div
+    position absolute
+    top 0
+    left 0
+    height 100vh
+    width 100%
+    color color
+    background-color bgcolor
+
+#app
+    background-color bgcolor
+    position absolute
+    width 100%
+    top 0
+    color color
+    left 0
+    min-height 100vh
+
+.loading-overlay
+    position fixed
+    height 100%
+    z-index 10000
+    background-color rgba(0, 0, 0, .8)
+
+.full-w
+    width 100%
+    
+.half-w
+    width 50%
+    padding 0 2%
+    flex-shrink 0
+    &:nth-child(2n + 1)
+        padding-left 0
+    &:nth-child(2n)
+        padding-right 0
+
+.text-center
+    text-align center
+
+.flex
+    display flex
+    align-items center
+    &.start
+        align-items flex-start
+
+.flex-column
+    display flex
+    align-items center
+    flex-direction column
+    &.start
+        align-items flex-start
+
+.wrap
+    flex-wrap wrap
+
+.justify-center
+    justify-content center
+
+.justify-end
+    justify-content flex-end
+    
+.space-between
+    justify-content space-between
+
+.pad
+    padding 0 mobilesidepad
+    
+.label
+    font-weight 700
+    font-size 14px
+    margin-bottom .25rem
+    &.big
+        margin-bottom .5rem
+        font-size 16px
+
+.text
+    font-weight 300
+    font-size 13px
+    margin-bottom .1rem
+    &.big
+        margin-bottom .2rem
+        font-size 15px
+
+.light-text
+    color lighttextcolot
+
+

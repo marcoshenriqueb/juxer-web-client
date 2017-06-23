@@ -7,6 +7,10 @@ import router from './router';
 import store from './store';
 import routeMidlleware from './router/middleware';
 
+// Stylesheets
+import 'normalize.css';
+import './assets/stylus/app.styl';
+
 Vue.config.productionTip = false;
 
 // Syncs Vue router and Vuex.
