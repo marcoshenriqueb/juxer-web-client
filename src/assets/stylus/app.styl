@@ -117,12 +117,14 @@ ul
         font-size 16px
 
 .text
-    font-weight 300
+    font-weight 500
     font-size 13px
     margin-bottom .1rem
     &.big
-        margin-bottom .2rem
+        margin-bottom .3rem
         font-size 15px
+    &.small
+        font-size 11px
 
 .light-text
     color lighttextcolot
@@ -149,3 +151,58 @@ ul
 .start-container_img
     width 150px
     margin-bottom 20%
+
+currenttrackheight = 40vh
+.event-current_track
+    height currenttrackheight
+    overflow hidden
+    position relative
+
+.event-current_track-leave_button
+    z-index 1000
+    position absolute
+    top 10px
+    left 10px
+    height 40px
+    width 40px
+    font-size 28px
+
+.event-current_track-img
+    width 100%
+    height auto
+    position absolute
+    top 'calc(((100vw - %s) / 2) * -1)' % currenttrackheight
+    filter blur(5px)
+
+.event-current_track-content
+    height 100%
+    z-index 100
+    background-color rgba(0, 0, 0, .4)
+    .text
+        margin-bottom 5px
+
+userpicsize = 100px
+.event-current_track-content-user_img
+    height userpicsize
+    width userpicsize
+    border-radius userpicsize
+    margin-bottom 20px
+    
+.add-track-button
+    position absolute
+    z-index 1000
+    top 'calc(%s - 25px)' % currenttrackheight
+
+.event-queue_container
+    height 'calc(100vh - %s)' % currenttrackheight
+    overflow-y auto
+    padding-top 40px
+
+.event-queue_item
+    margin-bottom 10px
+    flex-shrink 0
+
+.event-queue_item-img
+    height 40px
+    margin-right 10px
+    

@@ -21,7 +21,7 @@ export default {
         facebookService.fetchUser()
         .then((user) => {
           user.username = user.email;
-          user.piture = user.picture.data.url;
+          user.picture = user.picture.data.url;
           user.token = response.authResponse.accessToken;
           authService.auth(user)
           .then(({ data }) => {
@@ -49,7 +49,7 @@ export default {
         facebookService.fetchUser()
         .then((user) => {
           user.username = user.email;
-          user.piture = user.picture.data.url;
+          user.picture = user.picture.data.url;
           user.token = response.authResponse.accessToken;
           authService.auth(user)
           .then(({ data }) => {

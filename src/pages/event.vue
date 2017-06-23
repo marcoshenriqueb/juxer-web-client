@@ -1,19 +1,26 @@
 <template>
-  <div>
-    <h2>{{ event.name }}</h2>
-    <div v-if="queue.length">
-      <img :src="queue[index].album.cover_medium" :alt="queue[index].album.title"><br>
-      <span>{{ queue[index].title }}</span><br>
-      <span>{{ queue[index].artist.name }}</span>
-    </div>
-    <div v-if="queue.length - 1 > index">
-      <div v-for="(q, k) in queue" v-if="k > index">
-        <img width="80" :src="q.album.cover_medium" :alt="q.album.title"><br>
-        <span>{{ q.title }}</span><br>
-        <span>{{ q.artist.name }}</span>
+  <div class="full-w flex-column" style="position:relative;">
+    <div class="event-current_track flex-column full-w">
+      <a class="event-current_track-leave_button flex justify-center" @click="leaveEvent"><span class="fa fa-chevron-left"></span></a>
+      <img class="event-current_track-img" v-if="queue.length" :src="queue[index].album.cover_big" :alt="queue[index].album.title">
+      <img v-else src="./../assets/media/album-placeholder.png" alt="album" class="event-current_track-img">
+      <div class="event-current_track-content flex-column justify-center full-w" v-if="queue.length">
+        <img class="event-current_track-content-user_img" :src="getUserPic(queue[index])" :alt="queue[index].user.first_name">
+        <span class="label big">{{ queue[index].title }}</span>
+        <span class="text">{{ queue[index].artist.name }}</span>
+        <span class="text">Pedido por {{ queue[index].user.first_name }}</span>
       </div>
     </div>
-    <hr>
+    <button class="icon-button big add-track-button"><span class="fa fa-plus"></span></button>
+    <div class="full-w flex-column pad event-queue_container">
+      <div class="event-queue_item full-w flex start" v-for="(q, k) in queue" v-if="k > index">
+        <img class="event-queue_item-img" :src="q.album.cover_medium" :alt="q.album.title"><br>
+        <div class="flex-column start">
+          <span class="text big">{{ q.title }}</span>
+          <span class="text small">{{ q.artist.name }}</span>
+        </div>
+      </div>
+    </div>
     <div>
       <h3 v-for="(p, k) in tracks" @click="() => { playlist = k; }">{{ k }}</h3>
       <div v-if="playlist">
@@ -21,7 +28,6 @@
         <span @click="addToQueue(t)" v-for="t in getNotInQueue(tracks[playlist])">{{ t.title }}<br></span>
       </div>
     </div>
-    <button @click="leaveEvent">Sair</button>
   </div>
 </template>
 
@@ -104,10 +110,23 @@ export default {
      * Leaves event.
      */
     leaveEvent() {
-      console.log(1);
       this.$router.push({
         name: 'start',
       });
+    },
+
+    /**
+     * Gets user profile picture.
+     *
+     * @param  {Object} track The track object.
+     * @return {String} The picture url.
+     */
+    getUserPic(track) {
+      if (!track) {
+        return '';
+      }
+
+      return track.user.picture;
     },
   },
 };

@@ -1,14 +1,16 @@
-.button
+.button, .icon-button
     height 39px
-    border 1px solid primarycolor
-    border-radius 3px
-    color primarycolor
-    font-size 13px
     font-weight 400
-    text-transform uppercase
-    text-decoration none
     line-height 19px
     cursor pointer
+    border 1px solid primarycolor
+
+.button
+    font-size 13px
+    border-radius 3px
+    color primarycolor
+    text-transform uppercase
+    text-decoration none
     transition all 200ms ease
     padding 9px 25px
     background-color transparent
@@ -34,6 +36,26 @@
         padding 9px
         border-radius 50%
         animation loading 1s linear infinite
+
+.icon-button
+    display flex
+    justify-content center
+    text-align center
+    outline none
+    width 39px
+    font-size 15px
+    padding 9px
+    border-radius 50%
+    background-color primarycolor
+    color color
+    text-decoration none
+    transition all 200ms ease
+    &.big
+        font-size 25px
+        height 50px
+        width 50px
+        span
+            margin-top 3px
 
 @keyframes loading
     0%
