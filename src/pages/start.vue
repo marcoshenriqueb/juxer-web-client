@@ -3,6 +3,7 @@
     <input @input="onSearchInput" :value="searchCode" type="text" placeholder="Digite o código">
     <button @click="enter">Entrar</button>
     <span v-if="searchCodeError.length">{{ searchCodeError }}</span>
+    <button @click="logout">Sair</button>
   </div>
 </template>
 
@@ -60,6 +61,13 @@ export default {
     onSearchInput(e) {
       this.$store.commit(SET_SEARCH_CODE, e.target.value);
       this.$store.commit(SET_SEARCH_CODE_ERROR, '');
+    },
+
+    /**
+     * Logs the user out.
+     */
+    logout() {
+      this.$store.dispatch('logout');
     },
   },
 };

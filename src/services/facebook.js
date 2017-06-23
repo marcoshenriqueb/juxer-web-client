@@ -42,6 +42,18 @@ export default {
     });
   },
 
+  logout() {
+    return new Promise((resolve, reject) => {
+      window.FB.logout((response) => {
+        if (response.authResponse) {
+          resolve(response);
+        } else {
+          reject(response);
+        }
+      });
+    });
+  },
+
   /**
    * Fetch user information from facebook SDK.
    */

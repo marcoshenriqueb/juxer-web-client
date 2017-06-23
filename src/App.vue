@@ -2,7 +2,14 @@
   <div id="app" v-if="authChecked">
     <router-view></router-view>
   </div>
-  <span v-else>Loading</span>
+  <div v-else class="initial-loader-div flex justify-center">
+    <div class="loader big">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </div>
 </template>
 
 <script>

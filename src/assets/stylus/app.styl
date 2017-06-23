@@ -4,7 +4,7 @@ lightbgcolor = #111
 lighttextcolot = #b2b2b2
 color = white
 mobilesidepad = 2rem
-filtercolor = rgba(0, 0, 0, .9)
+filtercolor = rgba(0, 0, 0, .7)
 
 *
     box-sizing border-box
@@ -49,7 +49,7 @@ ul
     background-color bgcolor
 
 #app
-    background-color bgcolor
+    background-color lightbgcolor
     position absolute
     width 100%
     top 0
@@ -88,6 +88,8 @@ ul
     display flex
     align-items center
     flex-direction column
+    &.end
+        align-items flex-end
     &.start
         align-items flex-start
 
@@ -126,3 +128,16 @@ ul
     color lighttextcolot
 
 
+@import './loader';
+@import './button';
+
+.register-container
+    background-image: linear-gradient(180deg, filtercolor, filtercolor), url('./../media/compressed/register.jpg');
+    background-size cover
+    background-position center
+    height 100vh
+    text-align right
+
+.register-container_img
+    width 150px
+    margin-bottom 70%

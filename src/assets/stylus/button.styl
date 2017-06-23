@@ -1,0 +1,64 @@
+.button
+    height 39px
+    border 1px solid primarycolor
+    border-radius 3px
+    color primarycolor
+    font-size 13px
+    font-weight 400
+    text-transform uppercase
+    text-decoration none
+    line-height 19px
+    cursor pointer
+    transition all 200ms ease
+    padding 9px 25px
+    background-color transparent
+
+    &:focus
+        outline 0
+
+    &:hover, &.active
+        color color
+        border-color color
+
+    &.active:hover
+        color primarycolor
+        border-color primarycolor
+
+    &.round-btn
+        border-radius: 15px
+        padding: 9px 9px
+        font-size: 30px
+
+    &.loading
+        width 39px
+        padding 9px
+        border-radius 50%
+        animation loading 1s linear infinite
+
+@keyframes loading
+    0%
+        transform rotate(0deg)
+    100%
+        transform rotate(360deg)
+
+
+a
+    font-size 14px
+    font-weight 500
+    margin .3rem
+    text-decoration none
+    cursor pointer
+    color primarycolor
+    transition: all 300ms ease
+    &.upper
+        text-transform: uppercase;
+    &:hover
+        color color
+        &.inverted
+            color bgcolor
+    &.white
+        color color
+        &:hover
+            color primarycolor
+    &.big
+        font-size 16px

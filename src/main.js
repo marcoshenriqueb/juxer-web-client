@@ -6,6 +6,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 import routeMidlleware from './router/middleware';
+import JButton from './components/button';
 
 // Stylesheets
 import 'normalize.css';
@@ -24,6 +25,8 @@ Axios.defaults.baseURL = process.env.API_LOCATION;
 Axios.defaults.headers.common['Content-Type'] = 'application/json';
 Vue.$http = Axios;
 
+// Register global components.
+Vue.component('j-button', JButton);
 
 /* eslint-disable no-new */
 new Vue({

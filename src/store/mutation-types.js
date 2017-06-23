@@ -3,6 +3,9 @@
 // Auth
 export const SET_AUTH_USER = 'SET_AUTH_USER';
 export const SET_AUTH_STATUS = 'SET_AUTH_STATUS';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
+export const SET_LOGGING_IN_STATUS = 'SET_LOGGING_IN_STATUS';
 
 // Event
 export const SET_SEARCH_CODE = 'SET_SEARCH_CODE';
